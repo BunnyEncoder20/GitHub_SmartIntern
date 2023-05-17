@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reg Pg</title>
+        <meta name="Bunny" content="Reg Form">
+
+        <link rel="stylesheet" href="../CSS/style.css">
+    </head>
+    <body>
+        <h1><marquee>Fill the below form to REGISTER</marquee></h1>
+
+    <!-- HTML methods : 
+        ---------
+        POST
+        GET 
+
+        DELETE 
+    -->
+
+    <form action="./thanks.html" method="post">
+        <center><h2>REGISTERATION FORM</h2></center>
+        <table border="1">
+            <tr>
+                <th>Detail</th>
+                <th>Fill here</th>
+            </tr>
+            <tr>
+                <td><label for="name">Name : </label></td>
+                <td><input id="name" name="name" type="text" placeholder="Your name here..."></td>
+            </tr>
+            <tr>
+                <td><label for="mail">Email : </label></td>
+                <td><input id="mail" name ="mail" type="email" placeholder="valid mail ID here..."></td>
+            </tr>
+            <tr>
+                <td><label for="addr">Address : </label></td>
+                <td><textarea name="addr" id="addr" cols="30" rows="10" placeholder="House number - Street name - district name - city name - State - Country ..."></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="gender">Gender : </label></td>
+                <td>
+                <input id="gender" name="gender" type="radio" value="Male">Male</input>
+                <br>
+                <input id="gender" name="gender" type="radio" value="Female">Female</input>
+                <br>
+                <input id="gender" name="gender" type="radio" value="Others">Others</input>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="course" id="courseID">Course : </label></td>
+                <td>
+                    <input id="course" name="course" type="checkbox" checked="?yes?" value="Java">Java</input>
+                    <br>
+                    <input id="course" name="course" type="checkbox" value="IOT" >IOT</input>
+                    <br>
+                    <input id="course" name="course" type="checkbox" value="ML" >ML</input>
+                    <br>
+                    <input id="course" name="course" type="checkbox" value="AI" >AI</input>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="course2" class="course2class">Course2 : </label></td>
+                <td>
+                    <select name="course2" id="course2" class="course2class">
+                        <option value="Java 2" class="course2class">Java 2</option>
+                        <option value="IOT 2" class="course2class">IOT 2</option>
+                        <option value="ML 2" class="course2class">ML 2</option>
+                        <option value="AI 2" class="course2class">AI 2</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <!-- <input type="Submit" value="Submit">Submit</input> -->
+                <td><button><input type="submit" value="Submit"></button></td>
+            </tr>
+        </table>
+    </form>
+
+    <br><br>
+    <a href="thanks.html">Thanks.html direct link</a>
+    </body>
+</html>

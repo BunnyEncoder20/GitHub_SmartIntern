@@ -1,0 +1,84 @@
+/* 
+    CSS - cascaded styled sheets 
+    -------------------------
+    used to decorate / style the html pages and make they attractive 
+    used to decide how an html element looks on the page 
+
+    Ways to add styling to the page  :-
+    inline : when the css is written in tag itself 
+    embedded : when the css is written in the head section of the html file itself
+    external : when the css is writeen in a seperate .css file (like this file here)
+
+    Basic structure of CSS : 
+    tagname / identifier / selectors 
+    {
+        Property : value
+    }
+
+
+
+    Different way for selecting an element from the html 
+    ----------------------------------------------
+    1. Using Tag - using the html tag itself to identify all those html tags 
+    eg : 
+    body {}
+    h1 {}
+    a {}
+
+    2. Using id - using the elements id to select
+    eg :
+    #headerID1 {}
+    #Para2 {}
+    #homelink {} 
+
+    3. Class selectors - using the class of the id to select all the elements of the same class
+    eg : 
+    .linksOFpara1 {}
+    .specialLinks {}
+    .importantHeadings {}
+
+
+    Advance CSS Selectors  : 
+    ---------------------
+    1. Parent child selectors - all properties of the parent are avaliable to the child - Inherietance 
+    eg :
+    ParentTag ChildTag {} 
+    li a {}
+    
+
+    Fonts & Text in CSS
+    -----------
+    font - family 
+    font - size 
+    font - weight 
+    font - height 
+    font - align
+    font - decoration 
+
+    eg : 
+    .paraClass {
+        font-family : Arial Black
+        font-size : 10px
+        weight : 600
+        height : 1.5;
+        text-align : center;
+        text-decoration : none;
+    }
+*/
+
+h1{
+    color: red;
+    background: black;
+}
+
+body{
+    background: pink;
+}
+
+#courseID{
+    color: red;
+}
+
+.course2class {
+    color: blueviolet;
+}
