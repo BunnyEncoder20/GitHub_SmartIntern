@@ -37,4 +37,4 @@
 function printValue() {
     var naam = document.getElementById("naam").value ;
     alert(naam) ;
-}
+}r
