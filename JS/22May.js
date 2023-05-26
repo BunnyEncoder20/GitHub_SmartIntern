@@ -42,4 +42,14 @@
         of code should be present inside this block 
     }
 
+
+
+    Regular Expression in JS
+    ---------------------
+    /pattern/modifiers
+    eg : var pattern = /Bunny/i
+
+
+    Modifiers in JS
+
 */
