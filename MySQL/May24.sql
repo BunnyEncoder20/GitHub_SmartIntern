@@ -27,3 +27,51 @@
     3. Right (Outer Join) : All the records of table 2 + Intersection (matching rows) of table 1
     4. Full Outer Join : Union of the 2 tables
 */
+
+CREATE TABLE IF NOT EXISTS contacts (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fname VARCHAR(50),
+    lname VARCHAR(50)
+);
+
+INSERT INTO contacts (fname,lname) VALUES
+("Soma" , "Senpai"),
+("Varun" , "Verma"),
+("Tarun" , "Puneet") ;
+
+SELECT * FROM contacts ;
+
+CREATE TABLE IF NOT EXISTS results (
+	sid INT PRIMARY KEY auto_increment,
+    fname VARCHAR(50),
+    lname VARCHAR(50),
+    gpa INT
+);
+
+INSERT INTO results (fname,lname,gpa) VALUES
+("Soma" , "Senpai",10),
+("Varun" , "Verma" , 9),
+("Tarun" , "Puneet", 10) ;
+
+SELECT * FROM results ;
+
+SELECT contacts.fname,contacts.lname, results.gpa
+FROM contacts INNER JOIN results
+ON contacts.fname = results.fname AND contacts.lname = results.lname ;
+
+INSERT INTO contacts (fname,lname) VALUES
+("Somya" , "Kumari"),
+("Bunny" , "Bun");
+
+INSERT INTO results (fname,lname,gpa) VALUES
+("Soma" , "Bun",10),
+("Bunny" , "Verma" , 9),
+("Tarun" , "Verma", 10) ;
+
+SELECT contacts.fname,contacts.lname, results.gpa
+FROM contacts Left JOIN results
+ON contacts.fname = results.fname AND contacts.lname = results.lname ;
+
+SELECT contacts.fname,contacts.lname, results.gpa
+FROM contacts RIGHT JOIN results
+ON contacts.fname = results.fname AND contacts.lname = results.lname ;
