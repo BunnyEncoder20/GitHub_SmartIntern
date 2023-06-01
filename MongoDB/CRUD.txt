@@ -1,0 +1,87 @@
+//*****************************//
+CRUD : Create Insert Update Delete commands in MongoDB
+-------------------------------------------------
+
+1. Create 
+--------
+- In order to create a DB in compass, just use the GUI to create a DB and add a collection to it 
+- Alternative to that is to write the follwoing commands in MongoSH : 
+    > use db_name
+    < switched to db_name
+    > db.createCollection collection_Name
+
+2. Insert 
+-------
+> db.collection_Name.insertOne({ column_Name1 : Value })
+< {
+  acknowledged: true,
+  insertedId: ObjectId("64737eff95d4e3cfc371415b")
+}
+
+> db.collection_Name.insertOne([ { column_Name1 : Value1, column_Name2:"Value2" } , { column_Name1 : Value3 , column_Name2:"Value4" } , {...} ])
+< {
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6473823095d4e3cfc371415c"),
+    '1': ObjectId("6473823095d4e3cfc371415d"),
+    '2': ObjectId("6473823095d4e3cfc371415e"),
+    '3': ObjectId("6473823095d4e3cfc371415f")
+  }
+}
+
+3. Showing the Data :
+------------------
+> show collections
+< Collection 1
+< collection 2
+< ...
+
+> db.collection_Name.find({}).pretty()
+< {
+  _id: ObjectId("64737eff95d4e3cfc371415b"),
+  name: 'Soma',
+  age: 22,
+  dept: 'CSE'
+}
+
+4. Updating the documents 
+-----------------------
+> db.students.updateOne(
+  { name: "Bunny" }, // Filter to match the document(s) to be updated
+  { $set: { age: 23, dept: "Computer Science" } } // Update operation using $set to specify new values
+)
+
+> db.students.updateMany(
+  { age: { $lt: 21 } }, // Filter to match the document(s) to be updated
+  { $set: { dept: "Engineering" } } // Update operation using $set to specify new values
+)
+
+
+5. Comparison Operators in MongoDB
+--------------------------------
+Here are some comparison operators in MongoDB:
+
+$eq: Matches values that are equal to a specified value.
+$gt: Matches values that are greater than a specified value.
+$gte: Matches values that are greater than or equal to a specified value.
+$lt: Matches values that are less than a specified value.
+$lte: Matches values that are less than or equal to a specified value.
+$ne: Matches all values that are not equal to a specified value.
+$in: Matches any of the values specified in an array.
+$nin: Matches none of the values specified in an array.
+
+6. Delete
+--------
+> db.students.deleteOne({name:"Somya"})
+< {
+  acknowledged: true,
+  deletedCount: 1 
+}
+
+> db.students.deleteMany({name:"IIM Finance"})
+< {
+  acknowledged: true,
+  deletedCount: 2
+}
+
+//***************************//
