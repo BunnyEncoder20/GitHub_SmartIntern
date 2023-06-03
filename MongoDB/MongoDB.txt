@@ -1,0 +1,163 @@
+MongoDB
+--------
+Unlike relational database Management Systems mongodb uses a nosql format to 
+store and retrieve data
+
+NoSQL = Not Only SQL (Structured Query Language)
+=> Storing data in various formats other than traditional SQL tables, we store related 
+data as a single document 
+
+Each Document = 1 row in a SQL table 
+Each document stores data in field value pairs similar to a JSON format, but it is 
+actually BSON - Binary Java Script Object Notation 
+
+Collection of field-value pairs = a Document 
+Collection of Document = a Collection
+Group of 1 or more Collection = DataBase 
+
+To Use MongoDB in VS code use the extension
+1. Click on the connections available on th LHS panel to connect to them
+2. right click > launch MongoSH to launch MongoSH in the terminal panel
+
+
+Commands : 
+************
+
+1. To Show List of All Databases : 
+----------------------------
+> Show dbs
+(shows the list of all the databases present)
+
+
+2. To Select a database to work on : 
+-------------------------------
+> use database_Name 
+(switch to use that database)
+
+***Note : use db_Name can also be used to make a temp db with no collections 
+(temp as it will not show up in the database list until you add a collection into the db)
+
+
+3. To create a collection :
+---------------------- 
+> db.createCollection("collection_Name")  
+(to create a new collection within a database)
+
+
+4. To Drop current database : 
+-------------------------
+> db.dropDatabase()
+
+
+5. Inerting Document(s) Into a Collection :
+----------------------------------
+> db.collectionName.insertOne({field1:Value , field2:Value, ... })
+> db.collectionName.insertMany( [ {doc1} , {doc2} , {doc3} ] )
+> db.collectionName.insertMany( [ {field1:Value , field2:Value, ... } , {field3:Value , field4:Value, ... } , {...} ] )
+
+6. Looking at all the documents within a collection
+--------------------------------------------
+> db.collectionName.find()
+
+
+
+Data Types in MongoDB
+--------------------
+1. Strings  ("Bunny" , "Soma Senpai" , "DSA416", etc) 
+2. Integers (1,2,3)
+3. Doubles (2.43 , 7.6, 9.3 , 10.0)
+4. Booleans (True , False)
+5. Date (Eg : NNN : new Date("2023-11-01T10:10:30")) Note : after "T" time is mentioned 
+6. Null (no value - used as a placeholder for maybe a future value)
+7. Multiple Values (Eg : courses : ["Eng","CSE","AI&ML"] )
+8. Nested Documents (Eg: address : {street:"3rd row INA", city:"Payannur", state:"Kerala", country:"India"} )
+
+
+Sorting and Limiting Documents 
+---------------------------
+1. Sorting 
+--------
+> db.collectionName.find().sort({Field_Usedfor_Sorting:1})
+
+Note : 
+1 = acesding/alphabetical order
+2 = descending/reverse alphabetical order 
+
+2. Limiting 
+---------
+> db.students.find().limit( Num of documents to be returned )
+Eg : 
+> db.students.find().sort({gpa:-1}).limit(1) => gives the stuents with the highest GPA
+
+
+
+Find method in MongoDB
+---------------------
+
+1. Adding conditions to find()
+-------------------------
+> db.collectionName.find({field to be checked : Value needed})
+Eg :
+> db.students.find({name:"Bunny" , gpa:9.2}) 
+Note : there can be multiple filters seperated by commas
+
+2. Projection Parameter
+--------------------
+> db.collectionName.find({Filter Parameters} , {Projection Parameter})
+-> Helps return specific fields values only like maybe only name and gpa
+Eg : 
+> db.students.find( {} , {_id:falsae, name:true, age:true})
+Note : can also use 1 and 0 for true and false
+
+All in All the filter (query) parameter in find is like MySQL where clause 
+and the Projection parameter is like the SELECT Col1 Col2 from MySQL
+
+
+Updating documents in MongoDB
+----------------------------
+
+1. Updating One doc : 
+------------------
+
+1. Adding / Updating a field in Mongo : 
+---------------------------------
+> db.collectioName.updateOne(filter , update)
+> db.collectionName.updateOne({field:value} , {$set:{field:value}})
+
+filter = selection creteria 
+update = the update to be made to the doc
+$set:{} = operator is used to change the value of a field
+$unset:{} = removes a field from a document 
+
+Eg: 
+> db.students.updateOne({name:Somya} , {$set:{gpa:9.4} })
+
+*Note : if the field does not exist then it will be added into the document 
+*Note : It is all preffered to update anything usiong _id as it is unique for 
+each document 
+
+2. Removing a Field from a document : 
+--------------------------------
+> db.students.updateOne({field:value},{$unset:{field:value}})
+
+Eg: 
+> dv.students.updateOne({name:Bunny},{$unset:{hosteller:""}})
+*Note : assigning an empty string removes the field from the document
+
+
+3. Updating Many Documents at Once :
+---------------------------------
+> db.collectionName.updateMany({filter},{update})
+*Note : if filter is left blank then all the documents are selected for the 
+update. If the field is present already, it'll updated and if it doesn't, then
+it will be added to it. 
+
+Eg:
+> db.students.updateMany({},{$set:{hosteller:false}})
+
+4. Updating only those documents which have field missing : 
+---------------------------------------------------
+> db.collectionName.updateMany( {field:{$exists:false}} , {$set:{field:value}} )
+
+Eg: If we want to update all documents which do not have hosteller field 
+> db.students.updateMany({hosteller:{$exists:false}} , {$set:{hosteller:true}})
